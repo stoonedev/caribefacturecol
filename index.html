@@ -2,68 +2,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caribe sol en linea</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            height: 100%;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            text-align: center;
-            background-color: #f0f0f0; /* Fondo gris claro para resaltar la imagen */
-        }
-        .image {
-            max-width: 80%;
-            max-height: 80%;
-            margin-bottom: 20px;
-        }
-        .button-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        .button {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: rgb(0, 165, 97);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .button:hover {
-            background-color: rgb(0, 195, 255);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consulta de Factura | Air-E Energía</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      background: linear-gradient(270deg, #0072ff, #00c6ff, #00ff94, #00ff94, #0072ff);
+      background-size: 1000% 1000%;
+      animation: gradientMove 20s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 90%;
+      padding: 30px 40px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .card h1 {
+      color: #0072ff;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .card label {
+      display: block;
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #0072ff;
+    }
+
+    .card input[type="text"] {
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 20px;
+      border: 2px solid #0072ff;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .card input[type="text"]:focus {
+      border-color: #00c6ff;
+    }
+
+    .card button {
+      background: #0072ff;
+      color: white;
+      border: none;
+      padding: 15px 0;
+      width: 100%;
+      font-size: 1.2rem;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.3s ease;
+    }
+
+    .card button:hover {
+      background: #005bb5;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+      user-select: none;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 25px 25px;
+      }
+      .card h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17133446685"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'AW-17133446685');
-</script>
-    <div class="container">
-        <img src="https://www.sisteconfit.com/wp-content/uploads/2022/04/Factura-electronica.jpeg" alt="Imagen" class="image">
-        <div class="button-container">
-            <a href="" class="button">realiza tu pago <strong></strong> aquí</a>
-        </div>
-    </div>
+  <div class="card" role="main" aria-label="Formulario de consulta de factura Air-E Energía">
+    <h1>Consulta tu Factura</h1>
+    <p>Ingresa tu número de factura para continuar.</p>
+
+    <form id="consultaForm">
+      <label for="cliente">Número de factura</label>
+      <input type="text" id="cliente" name="cliente" placeholder="Ejemplo: 12345678" required />
+      <button type="submit">Consultar Factura</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Air- E Energía. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    document.getElementById("consultaForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const numeroFactura = document.getElementById("cliente").value.trim();
+      if (numeroFactura) {
+        // Redirige siempre a la URL fija externa
+        window.location.href = "";
+      } else {
+        alert("Por favor ingresa un número de factura válido.");
+      }
+    });
+  </script>
 </body>
 </html>
